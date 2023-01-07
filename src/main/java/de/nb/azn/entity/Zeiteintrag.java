@@ -80,14 +80,14 @@ public class Zeiteintrag {
 
     @JoinColumn(name = "MONATS_ARBEITS_ZEITNACHWEIS_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private MonatsArbeitsZeitnachweis monatsArbeitsZeitnachweis;
+    private MonatsZeitnachweis monatsZeitnachweis;
 
-    public MonatsArbeitsZeitnachweis getMonatsArbeitsZeitnachweis() {
-        return monatsArbeitsZeitnachweis;
+    public MonatsZeitnachweis getMonatsArbeitsZeitnachweis() {
+        return monatsZeitnachweis;
     }
 
-    public void setMonatsArbeitsZeitnachweis(MonatsArbeitsZeitnachweis monatsArbeitsZeitnachweis) {
-        this.monatsArbeitsZeitnachweis = monatsArbeitsZeitnachweis;
+    public void setMonatsArbeitsZeitnachweis(MonatsZeitnachweis monatsZeitnachweis) {
+        this.monatsZeitnachweis = monatsZeitnachweis;
     }
 
     public void setStartTs(LocalDateTime startTs) {

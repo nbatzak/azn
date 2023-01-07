@@ -4,7 +4,7 @@
     <data>
         <collection id="zeiteintragDc" class="de.nb.azn.entity.Zeiteintrag">
             <fetchPlan extends="_base">
-                <property name="monatsArbeitsZeitnachweis" fetchPlan="_base">
+                <property name="monatsZeitnachweis" fetchPlan="_base">
                     <property name="zeiteintraege" fetchPlan="_base"/>
                     <property name="verguetungsmodell" fetchPlan="_base"/>
                 </property>

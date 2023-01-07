@@ -20,11 +20,12 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "MONATS_ARBEITS_ZEITNACHWEIS", indexes = {
-        @Index(name = "IDX_MONATSARBEIT_VERGUETUNGSM", columnList = "VERGUETUNGSMODELL_ID")
+@Table(name = "MONATS_ZEITNACHWEIS", indexes = {
+        @Index(name = "IDX_MONATSZEITNA_VERGUETUNGSM", columnList = "VERGUETUNGSMODELL_ID"),
+        @Index(name = "IDX_MONATSZEITNA_JAHRESZEITNA", columnList = "JAHRES_ZEITNACHWEIS_ID")
 })
 @Entity
-public class MonatsArbeitsZeitnachweis {
+public class MonatsZeitnachweis {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -32,7 +33,7 @@ public class MonatsArbeitsZeitnachweis {
 
     @OnDeleteInverse(DeletePolicy.UNLINK)
     @OnDelete(DeletePolicy.DENY)
-    @OneToMany(mappedBy = "monatsArbeitsZeitnachweis")
+    @OneToMany(mappedBy = "monatsZeitnachweis")
     private List<Zeiteintrag> zeiteintraege;
 
     @OnDeleteInverse(DeletePolicy.DENY)
@@ -83,6 +84,19 @@ public class MonatsArbeitsZeitnachweis {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+    @OnDeleteInverse(DeletePolicy.DENY)
+    @OnDelete(DeletePolicy.UNLINK)
+    @JoinColumn(name = "JAHRES_ZEITNACHWEIS_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private JahresZeitnachweis jahresZeitnachweis;
+
+    public JahresZeitnachweis getJahresZeitnachweis() {
+        return jahresZeitnachweis;
+    }
+
+    public void setJahresZeitnachweis(JahresZeitnachweis jahresZeitnachweis) {
+        this.jahresZeitnachweis = jahresZeitnachweis;
+    }
 
     public Verguetungsmodell getVerguetungsmodell() {
         return verguetungsmodell;
