@@ -4,12 +4,8 @@
     <menu id="application" caption="msg://de.nb.azn/menu.application" insertBefore="administration">
         <item screen="User.browse" caption="msg://de.nb.azn.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="MonatsArbeitsZeitnachweis.browse"
-              caption="msg://de.nb.azn.screen.monatsarbeitszeitnachweis/monatsArbeitsZeitnachweisBrowse.menu"/>
-        <item screen="MonatsZeitnachweis.browse"
-              caption="msg://de.nb.azn.screen.monatszeitnachweis/monatsZeitnachweisBrowse.menu"/>
     </menu>
-    <item screen="Arbeitszeitnachweis"
-          caption="msg://de.nb.azn.screen.arbeitszeitnachweis/arbeitsZeitnachweis.caption"/>
+    <item screen="MonatsZeitnachweis.browse"
+          caption="msg://de.nb.azn.screen.monatszeitnachweis/monatsZeitnachweisBrowse.menu"/>
 
 </menu-config>
