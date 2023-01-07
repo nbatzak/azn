@@ -84,6 +84,7 @@ public class MonatsZeitnachweis {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
     @OnDeleteInverse(DeletePolicy.DENY)
     @OnDelete(DeletePolicy.UNLINK)
     @JoinColumn(name = "JAHRES_ZEITNACHWEIS_ID")

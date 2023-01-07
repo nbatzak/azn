@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "ZEITEINTRAG", indexes = {
-        @Index(name = "IDX_ZEITEINTRAG_MONATSARBEITSZ", columnList = "MONATS_ARBEITS_ZEITNACHWEIS_ID")
+        @Index(name = "IDX_ZEITEINTRAG_MONATSZEITNA", columnList = "MONATS_ZEITNACHWEIS_ID")
 })
 @Entity
 public class Zeiteintrag {
@@ -78,15 +78,15 @@ public class Zeiteintrag {
     @Version
     private Integer version;
 
-    @JoinColumn(name = "MONATS_ARBEITS_ZEITNACHWEIS_ID")
+    @JoinColumn(name = "MONATS_ZEITNACHWEIS_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private MonatsZeitnachweis monatsZeitnachweis;
 
-    public MonatsZeitnachweis getMonatsArbeitsZeitnachweis() {
+    public MonatsZeitnachweis getMonatsZeitnachweis() {
         return monatsZeitnachweis;
     }
 
-    public void setMonatsArbeitsZeitnachweis(MonatsZeitnachweis monatsZeitnachweis) {
+    public void setMonatsZeitnachweis(MonatsZeitnachweis monatsZeitnachweis) {
         this.monatsZeitnachweis = monatsZeitnachweis;
     }
 

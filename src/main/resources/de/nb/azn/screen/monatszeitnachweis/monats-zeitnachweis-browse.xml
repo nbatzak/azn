@@ -45,6 +45,7 @@
             <actions>
                 <action id="create" type="create"/>
                 <action id="remove" type="remove"/>
+                <action id="edit" type="edit"/>
             </actions>
             <columns>
                 <column id="datum" dateFormat="MM/yyyy"/>
@@ -57,6 +58,7 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="monatsZeitnachweisesTable.create"/>
+                <button id="editBtn" action="monatsZeitnachweisesTable.edit"/>
                 <button id="removeBtn" action="monatsZeitnachweisesTable.remove"/>
             </buttonsPanel>
         </groupTable>

@@ -81,16 +81,6 @@ public class Verguetungsmodell {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "verguetungsmodell")
-    private MonatsZeitnachweis monatsZeitnachweis;
-
-    public MonatsZeitnachweis getMonatsArbeitsZeitnachweis() {
-        return monatsZeitnachweis;
-    }
-
-    public void setMonatsArbeitsZeitnachweis(MonatsZeitnachweis monatsZeitnachweis) {
-        this.monatsZeitnachweis = monatsZeitnachweis;
-    }
 
     public void setZeitabschnitt1Preis(BigDecimal zeitabschnitt1Preis) {
         this.zeitabschnitt1Preis = zeitabschnitt1Preis;
