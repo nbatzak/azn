@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://zeiteintragEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="zeiteintragDc"
+                  class="de.nb.azn.entity.Zeiteintrag">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="zeiteintragDc">
+                <column width="350px">
+                    <dateField id="datumField" property="datum"/>
+                    <dateField id="startTsField" property="startTs"/>
+                    <dateField id="endeTsField" property="endeTs"/>
+                    <textField id="zeitabschnitt1Field" property="zeitabschnitt1"/>
+                    <textField id="zeitabschnitt2Field" property="zeitabschnitt2"/>
+                    <textField id="zeitabschnitt3Field" property="zeitabschnitt3"/>
+                    <textField id="zeitabschnitt4Field" property="zeitabschnitt4"/>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

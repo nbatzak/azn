@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://arbeitsZeitnachweis.caption">
+    <data>
+        <collection id="zeiteintragDc" class="de.nb.azn.entity.Zeiteintrag">
+            <fetchPlan extends="_base">
+                <property name="monatsArbeitsZeitnachweis" fetchPlan="_base">
+                    <property name="zeiteintraege" fetchPlan="_base"/>
+                    <property name="verguetungsmodell" fetchPlan="_base"/>
+                </property>
+            </fetchPlan>
+            <loader id="zeiteintragDl">
+                <query>
+                    <![CDATA[select e from Zeiteintrag e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout expand="zeiteintraegeBox">
+        <filter dataLoader="zeiteintragDl"/>
+        <vbox id="zeiteintraegeBox" expand="zeiteintraegeTable">
+            <buttonsPanel>
+                <button id="create" action="zeiteintraegeTable.create"/>
+                <button id="edit" action="zeiteintraegeTable.edit"/>
+                <button id="remove" action="zeiteintraegeTable.remove"/>
+            </buttonsPanel>
+            <table id="zeiteintraegeTable" dataContainer="zeiteintragDc" width="100%">
+                <actions>
+                    <action id="create" type="create"></action>
+                    <action id="edit" type="edit"></action>
+                    <action id="remove" type="remove"></action>
+                </actions>
+                <columns>
+                    <column id="datum"/>
+                    <column id="startTs"/>
+                    <column id="endeTs"/>
+                    <column id="zeitabschnitt1"/>
+                    <column id="zeitabschnitt2"/>
+                    <column id="zeitabschnitt3"/>
+                    <column id="zeitabschnitt4"/>
+                </columns>
+            </table>
+        </vbox>
+    </layout>
+</window>
