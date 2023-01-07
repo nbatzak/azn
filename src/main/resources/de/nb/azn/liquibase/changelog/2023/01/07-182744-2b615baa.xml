@@ -6,9 +6,18 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1" author="azn">
-        <createTable tableName="MONATS_ARBEITS_ZEITNACHWEIS">
+        <createTable tableName="JAHRES_ZEITNACHWEIS">
             <column name="ID" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_MONATS_ARBEITS_ZEITNACHWEIS"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_JAHRES_ZEITNACHWEIS"/>
+            </column>
+            <column name="JAHR" type="DATE"/>
+            <column name="UEBERSTUNDEN" type="DECIMAL"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="azn">
+        <createTable tableName="MONATS_ZEITNACHWEIS">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_MONATS_ZEITNACHWEIS"/>
             </column>
             <column name="VERGUETUNGSMODELL_ID" type="UUID"/>
             <column name="DATUM" type="DATE"/>
@@ -24,9 +33,10 @@
             <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
             <column name="DELETED_BY" type="VARCHAR(255)"/>
             <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="JAHRES_ZEITNACHWEIS_ID" type="UUID"/>
         </createTable>
     </changeSet>
-    <changeSet id="2" author="azn">
+    <changeSet id="3" author="azn">
         <createTable tableName="VERGUETUNGSMODELL">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_VERGUETUNGSMODELL"/>
@@ -50,7 +60,7 @@
             <column name="DELETED_DATE" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="3" author="azn">
+    <changeSet id="4" author="azn">
         <createTable tableName="ZEITEINTRAG">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ZEITEINTRAG"/>
@@ -74,22 +84,31 @@
             <column name="MONATS_ARBEITS_ZEITNACHWEIS_ID" type="UUID"/>
         </createTable>
     </changeSet>
-    <changeSet id="4" author="azn">
-        <createIndex indexName="IDX_MONATSARBEIT_VERGUETUNGSM" tableName="MONATS_ARBEITS_ZEITNACHWEIS">
+    <changeSet id="5" author="azn">
+        <createIndex indexName="IDX_MONATSZEITNA_JAHRESZEITNA" tableName="MONATS_ZEITNACHWEIS">
+            <column name="JAHRES_ZEITNACHWEIS_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="JAHRES_ZEITNACHWEIS_ID" baseTableName="MONATS_ZEITNACHWEIS"
+                                 constraintName="FK_MONATSZEITN_ON_JAHRESZEITN" referencedColumnNames="ID"
+                                 referencedTableName="JAHRES_ZEITNACHWEIS"/>
+    </changeSet>
+    <changeSet id="6" author="azn">
+        <createIndex indexName="IDX_MONATSZEITNA_VERGUETUNGSM" tableName="MONATS_ZEITNACHWEIS">
             <column name="VERGUETUNGSMODELL_ID"/>
         </createIndex>
 
-        <addForeignKeyConstraint baseColumnNames="VERGUETUNGSMODELL_ID" baseTableName="MONATS_ARBEITS_ZEITNACHWEIS"
-                                 constraintName="FK_MONATSARBEI_ON_VERGUETUNGS" referencedColumnNames="ID"
+        <addForeignKeyConstraint baseColumnNames="VERGUETUNGSMODELL_ID" baseTableName="MONATS_ZEITNACHWEIS"
+                                 constraintName="FK_MONATSZEITN_ON_VERGUETUNGS" referencedColumnNames="ID"
                                  referencedTableName="VERGUETUNGSMODELL"/>
     </changeSet>
-    <changeSet id="5" author="azn">
+    <changeSet id="7" author="azn">
         <createIndex indexName="IDX_ZEITEINTRAG_MONATSARBEITSZ" tableName="ZEITEINTRAG">
             <column name="MONATS_ARBEITS_ZEITNACHWEIS_ID"/>
         </createIndex>
 
         <addForeignKeyConstraint baseColumnNames="MONATS_ARBEITS_ZEITNACHWEIS_ID" baseTableName="ZEITEINTRAG"
                                  constraintName="FK_ZEITEINTRAG_ON_MONATSARBEIT" referencedColumnNames="ID"
-                                 referencedTableName="MONATS_ARBEITS_ZEITNACHWEIS"/>
+                                 referencedTableName="MONATS_ZEITNACHWEIS"/>
     </changeSet>
 </databaseChangeLog>
